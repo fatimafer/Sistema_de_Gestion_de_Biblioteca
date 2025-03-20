@@ -6,8 +6,6 @@ Mejoras propuestas que no puedo llevar a cabo porque no cumpliría los requisito
 con las opciones y se le daría tiempo al usuario a revisar los datos que imprime el programa.
 """
 
-
-
 #Lista para guardar los objetos libros
 biblioteca = []
 
