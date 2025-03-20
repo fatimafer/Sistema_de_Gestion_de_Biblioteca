@@ -9,6 +9,7 @@ con las opciones y se le daría tiempo al usuario a revisar los datos que imprim
 #Lista para guardar los objetos libros
 biblioteca = []
 
+
 class Libro():
 
     def __init__(self):
@@ -33,7 +34,7 @@ class Libro():
     def prestar(self):
         if self.disponible == True:
             self.disponible = False
-            print("Se te ha prestado el libro, recuerda devolverlo en plazo \n")
+            print("Libro prestado con éxito \n")
         else:
             print("El libro ya está prestado \n")
 
@@ -41,30 +42,31 @@ class Libro():
     def devolver(self):
         if self.disponible == False:
             self.disponible = True
-            print("Has devuelto el libro correctamente \n")
+            print("Libro devuelto con éxito \n")
         else:
             print("Ya se había devuelto este libro anteriormente \n")
 
-#Función que muestra por pantalla los datos de un solo libro
-def imprimir_informacion(titulo, autor, isbn, disponible):
-    print(f"{titulo} ({autor}) - ISBN: {isbn} - Disponible: {'Sí' if disponible == True else 'No'} \n")
+    #Función que muestra los datos de todos los libros
+    @staticmethod
+    def mostrar():
+        for libro in biblioteca:
+            print(f"{libro.titulo} ({libro.autor}) - ISBN: {libro.isbn} - Disponible: {'Sí' if libro.disponible == True else 'No'} \n")
 
-#Función que muestra los datos de todos los libros
-def mostrar():
-    for libro in biblioteca:
-        imprimir_informacion(libro.titulo, libro.autor, libro.isbn, libro.disponible)
+    #Función que busca un libro en concreto y muestra los datos por pantalla de todos los libros
+    @staticmethod
+    def buscar():
+        isbn = (input("Ingresa el ISBN: "))
+        libro_encontrado = None
 
-#Función que busca un libro en concreto y muestra los datos por pantalla de todos los libros
-def buscar():
-    isbn = (input("Introduzca el ISBN del libro: "))
-    libro_encontrado = None
+        for libro in biblioteca:
+            if libro.isbn == isbn:
+                libro_encontrado = libro
+                print(f"{libro.titulo} ({libro.autor}) - ISBN: {libro.isbn} - Disponible: {'Sí' if libro.disponible == True else 'No'} \n")
 
-    for libro in biblioteca:
-        if libro.isbn == isbn:
-            libro_encontrado = libro
-            imprimir_informacion(libro.titulo, libro.autor, libro.isbn, libro.disponible)
+        if libro_encontrado == None:
+            print('Libro no encontrado \n')
 
-    return libro_encontrado
+        return libro_encontrado
 
 
 print("Bienvenido al Sistema de Gestión de Biblioteca")
@@ -84,11 +86,9 @@ while True:
     #Esta opción valida que el ISBN del libro que se desea prestar corresponde a un libro agregado a la lista Biblioteca
     #Si existe el libro, le cambiará el estado a "prestado"
     elif opcion == '2':
-        libro_prestado = buscar()
+        libro_prestado = Libro.buscar()
         if libro_prestado != None:
             libro_prestado.prestar()
-        else:
-            print('Libro no encontrado \n')
 
 
     elif opcion == '6':
