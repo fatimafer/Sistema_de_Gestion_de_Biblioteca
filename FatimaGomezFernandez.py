@@ -112,6 +112,7 @@ while True:
 
     elif opcion == '6':
         break
+
     else:
         print(f"La opción {opcion} no es válida, elija una de las siguientes opciones:")
 
