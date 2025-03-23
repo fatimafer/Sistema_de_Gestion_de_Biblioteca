@@ -6,6 +6,7 @@ Mejoras propuestas que no puedo llevar a cabo porque si no no cumpliría los req
 con las opciones y se le daría tiempo al usuario a revisar los datos que imprime el programa.
 - Los metodos buscar y mostrar los declararía como @staticmethod pero como no hemos visto esta opción en el curso no lo
 he hecho
+
 """
 
 #Lista para guardar los objetos libros
